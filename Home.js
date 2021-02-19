@@ -1,5 +1,15 @@
 import React from 'react';
-import {StyleSheet, Button, View, SafeAreaView, Text, Alert, AsyncStorage, TouchableOpacity} from 'react-native';
+import {
+    StyleSheet,
+    Button,
+    View,
+    SafeAreaView,
+    Text,
+    Alert,
+    AsyncStorage,
+    TouchableOpacity,
+    ActivityIndicator
+} from 'react-native';
 
 export default class Home extends React.Component{
 
@@ -13,11 +23,39 @@ export default class Home extends React.Component{
         });
 
     }
+    componentDidMount() {
+        fetch('http://192.168.0.104:8080/api/cities'
+            , {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                }
+            }
+        )
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(" no error");
+                global.cities = responseJson
+
+                console.log(responseJson);
+                this.setState({
+                    data: responseJson,
+                    loading:false
+                })
+            })
+            .catch((error) => {
+                console.log("error again");
+
+                console.error(error);
+            });
+    }
     constructor(props) {
         super(props)
         this.state = {
             token: null,
-            isHidden: true
+            isHidden: true,
+            loading:true
         }
     }
 
@@ -28,22 +66,28 @@ export default class Home extends React.Component{
         <SafeAreaView style={styles.container}>
 
             <View>
+                {this.state.loading ?
+                    <ActivityIndicator size="large"/>
+                :null}
                 <Text style={styles.title}>
                     الفلزه
                 </Text>
 
                 <View style={styles.fixToText}>
+                    {!this.state.loading ?
                     <Button style={styles.buttonStyle}
                             title="سائق"
                             onPress={() => navigate(
                                 'Driver')}
-                    />
-                <Button style={styles.buttonStyle}
+                    />:null}
+                    {!this.state.loading ?
+
+                        <Button style={styles.buttonStyle}
                             title="راكب"
                             onPress={() => navigate(
                                 'Rider')}
                             // onPress={() => Alert.alert('Right button pressed')}
-                    />
+                    />:null}
                 </View>
             </View>
         </SafeAreaView>

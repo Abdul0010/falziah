@@ -27,7 +27,8 @@ const Form=t.form.Form;
 // const [show, setShow] = useState(false);
 
 
-var options = ['الشحر', 'المكلا', 'الفيل', 'الحامي']
+var options =[];
+
 var DESTRUCTIVE_INDEX = 3;
 var CANCEL_INDEX = 4;
 
@@ -53,6 +54,9 @@ export default class AddTripWithLoggedInUser extends React.Component{
     async componentDidMount() {
         const token = await AsyncStorage.getItem('token');
         this.setState({ bearer: 'Bearer ' + token });
+        global.cities.forEach(function (city){
+            options.push(city);
+        })
     }
 
 
@@ -79,6 +83,7 @@ export default class AddTripWithLoggedInUser extends React.Component{
     //     this.ActionSheet2.show()
     // }
     handleConfirm=(datetime)=>{
+        alert();
         this.setState({
             isVisible:false,
             selectedDate:moment(datetime).format('yyyy-MM-d HH:mm'),

@@ -2,7 +2,7 @@ import React from 'react'
 import {TouchableOpacity, Alert, Button, SafeAreaView, StyleSheet, Text, View, ScrollView} from "react-native";
 import ActionSheet from 'react-native-actionsheet'
 import ActionSheet2 from 'react-native-actionsheet'
-var options = ['الشحر', 'المكلا', 'الفيل', 'الحامي']
+var options = [];
 
 export default class Rider extends React.Component{
     constructor(props) {
@@ -30,6 +30,12 @@ export default class Rider extends React.Component{
             }
         );
     };
+    async componentDidMount() {
+
+        global.cities.forEach(function (city){
+            options.push(city);
+        })
+    }
     handlePressto = (buttonIndex) => {
 
         this.setState({

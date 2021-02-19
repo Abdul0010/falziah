@@ -27,7 +27,8 @@ const Form=t.form.Form;
 // const [show, setShow] = useState(false);
 
 
-var options = ['الشحر', 'المكلا', 'الفيل', 'الحامي']
+var options =[];
+
 var DESTRUCTIVE_INDEX = 3;
 var CANCEL_INDEX = 4;
 
@@ -66,6 +67,12 @@ export default class addTrip extends React.Component{
             }
         );
     };
+    async componentDidMount() {
+
+        global.cities.forEach(function (city){
+            options.push(city);
+        })
+    }
     // showActionSheet = () => {
     //     this.ActionSheet.show()
     // }
@@ -93,9 +100,21 @@ export default class addTrip extends React.Component{
     };
 
     submitTrip(){
-        if(this.state.source.isEmpty()){
+        if(this.state.source==undefined||this.state.source==""){
             alert("الرجاء ادخال منطقه الانطلاق")
         }
+        else if(this.state.destination==undefined||this.state.destination==""){
+            alert("الرجاء ادخال منطقه الوصول")
+        }
+        else if(this.state.startTime==undefined||this.state.startTime==""){
+            alert("الرجاء ادخال تاريخ الرحله")
+        }
+        else if(this.state.passengers==undefined||this.state.passengers==""){
+            alert("الرجاء ادخال عددالركاب ")
+        }
+        else if(this.state.contactNo==undefined||this.state.contactNo==""){
+            alert("الرجاء ادخال رقم التواصل ")
+        }else{
         fetch('http://192.168.0.104:8080/api/trips', {
             method: 'POST',
             headers: {
@@ -123,7 +142,7 @@ export default class addTrip extends React.Component{
             ],
         );
 
-    };
+    }};
     constructor(props) {
         super(props)
         this.textInput = [];
