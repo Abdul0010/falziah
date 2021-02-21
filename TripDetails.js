@@ -1,7 +1,19 @@
 import React from 'react'
-import {TouchableOpacity,Alert, Button, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {
+    TouchableOpacity,
+    Alert,
+    Button,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    View,
+    FlatList,
+    ScrollView
+} from "react-native";
 import styles from "./assets/css/style";
 import moment from "moment";
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
 export default class Rider extends React.Component{
 
     static navigationOptions={
@@ -22,17 +34,35 @@ export default class Rider extends React.Component{
                     <Text style={styles.title}>
                         معلومات الرحله
                     </Text>
+                    <ScrollView>
                     <Text style={styles.details}>
-                        من {item.source}</Text>
-                    <Text style={styles.details}>
-                        الي {item.destination}</Text>
-                    <Text style={styles.details}>
-                        {moment(item.startTime).format('MMMM,Do YYYY HH:mm')}
+                        <FontAwesome name="arrow-left" size={25} style={{marginRight:120}} />
+                        {"   "}
+
+                        {item.source}
+
                     </Text>
                     <Text style={styles.details}>
-                       عدد الركاب {item.passengers}</Text>
+                        <Ionicons name="location" size={25} style={{marginRight:120}} />
+                        {"   "}
+
+                        {item.destination}</Text>
                     <Text style={styles.details}>
-                        رقم التواصل {item.contactNo}</Text>
+                        <FontAwesome name="calendar" size={25} style={{marginRight:120}} />
+                        {"   "}
+
+                        {moment(item.startTime).format('YYY/MM/D HH:mm')}
+                    </Text>
+                    <Text style={styles.details}>
+                        <Ionicons name="people" size={25} style={{marginRight:120}} />
+                        {"   "}
+                        {item.passengers}</Text>
+                    <Text style={styles.details}>
+                        <Ionicons name="md-call" size={25} style={{marginRight:120}} />
+                        {"   "}
+
+                        {item.contactNo}</Text>
+                    </ScrollView>
                     <View>
 
 

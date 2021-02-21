@@ -2,7 +2,9 @@ import React from 'react'
 import {TouchableOpacity, Alert, Button, SafeAreaView, StyleSheet, Text, View, ScrollView} from "react-native";
 import ActionSheet from 'react-native-actionsheet'
 import ActionSheet2 from 'react-native-actionsheet'
-var options = [];
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
+var options = [];``
 
 export default class Rider extends React.Component{
     constructor(props) {
@@ -58,10 +60,19 @@ export default class Rider extends React.Component{
 
                 <View>
                     <Text style={styles.title}>
+
+
                         الراكب
+
                     </Text>
+                    <Text style={styles.label}>
+                        <Ionicons name="search" size={25} style={{marginRight:120}} />
+                        <Text>{' '}</Text>
+                        البحث عن رحله
+                    </Text>
+
                     <View>
-                        <Text onPress={this.showActionSheet} style={styles.label}>من:</Text>
+                        <Text onPress={this.showActionSheet} style={styles.label}>من</Text>
                         <Text onPress={this.showActionSheet}
                               style={styles.buttonStyle}
                               value = {this.state.source}

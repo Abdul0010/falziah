@@ -1,4 +1,5 @@
 import React from 'react';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import {
     StyleSheet,
     Button,
@@ -18,12 +19,16 @@ export default class Home extends React.Component{
     }
     async componentDidMount() {
         const token = await AsyncStorage.getItem('token');
+        const fetchDate = await AsyncStorage.setItem('fetch_date',new Date());
+
         this.setState({ token: token,
-            isHidden:token!=null?true:false
+            isHidden:token!=null?true:false,
+            fetchDate:fetchDate
         });
 
     }
     componentDidMount() {
+
         fetch('http://192.168.0.104:8080/api/cities'
             , {
                 method: 'GET',
@@ -55,7 +60,8 @@ export default class Home extends React.Component{
         this.state = {
             token: null,
             isHidden: true,
-            loading:true
+            loading:true,
+            fetchDate:null
         }
     }
 
@@ -71,8 +77,9 @@ export default class Home extends React.Component{
                 :null}
                 <Text style={styles.title}>
                     الفلزه
-                </Text>
+                    <FontAwesome name="car" size={25} />
 
+                </Text>
                 <View style={styles.fixToText}>
                     {!this.state.loading ?
                     <Button style={styles.buttonStyle}

@@ -181,7 +181,7 @@ export default class AddTripWithLoggedInUser extends React.Component{
             <ScrollView keyboardDismissMode={'on-drag'}>
 
                 <Text style={styles.title}>
-                    اضافه يرحله 2 </Text>
+                    اضافه رحله  </Text>
                 <Text onPress={this.showActionSheet} style={styles.label}>من:</Text>
                 <Text onPress={this.showActionSheet}
                       style={styles.buttonStyle}
@@ -300,9 +300,10 @@ const styles = StyleSheet.create({
     },
     label: {
         marginBottom:2,
-        textAlign: 'center',
+        marginRight: 50,
+        textAlign: 'right',
         marginVertical: 8,
-        fontSize: 30,
+        fontSize: 20,
     },
     fixToText: {
         flexDirection: 'row',

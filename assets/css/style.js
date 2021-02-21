@@ -6,22 +6,23 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginHorizontal: 16,
+        marginBottom:100
     },
     title: {
         marginBottom:12,
         textAlign: 'center',
         marginVertical: 8,
         fontSize: 40,
-        paddingBottom:100
     },
+
     details: {
         marginBottom:12,
         textAlign: 'center',
         marginVertical: 8,
-        fontSize: 30,
-        paddingBottom:20,
+        fontSize: 25,
+        padding:15,
         backgroundColor:'#68a0cf',
-        borderRadius:10,
+        borderRadius:20,
         borderWidth: 1,
         borderColor: '#fff'
     },

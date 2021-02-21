@@ -1,6 +1,8 @@
 import React from 'react'
 import {TouchableOpacity,Alert, Button, ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import styles from "./assets/css/style";
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+
 export default class SearchForTrips extends React.Component {
 
     static navigationOptions = {
@@ -32,7 +34,6 @@ export default class SearchForTrips extends React.Component {
         )
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(" no error");
 
                 console.log(responseJson);
                 this.setState({
@@ -47,7 +48,6 @@ export default class SearchForTrips extends React.Component {
     }
     render() {
         // const { data, isLoading } = this.state;
-        const data=this.state.data;
 
         const {navigate} = this.props.navigation;
         return (
@@ -67,8 +67,12 @@ export default class SearchForTrips extends React.Component {
                             // <CardList id={item.id} title={item.source} content={item.source} style={styles.buttonStyle}/>
 
                          <Text style={styles.cardStyle}  onPress={() => navigate(
-                             'TripDetails',{item:item})}>  :{item.source}
-                             :{item.destination}</Text>
+                             'TripDetails',{item:item})}>
+
+                             {item.source}
+                             <FontAwesome name="arrow-left" size={25} style={{marginRight:120}} />
+
+                             {item.destination}</Text>
                         )}
                     />
             </SafeAreaView>
